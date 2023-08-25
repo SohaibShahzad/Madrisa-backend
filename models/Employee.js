@@ -13,7 +13,7 @@ const TeacherSchema = new Schema({
         type: String,
     },
     password: {
-        type: string,
+        type: String,
     },
     role: {
         type: String,

@@ -13,8 +13,8 @@ const SalariesSchema = new Schema({
         type: Date,
     },
     teacherID: {
-        type: Mongoose.Schema.Types.ObjectId,
-        ref: "Teacher",
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Employee",
     },
 }, {
     timestamps: true

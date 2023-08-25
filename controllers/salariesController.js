@@ -45,7 +45,7 @@ const deleteSalary = asyncHandler(async (req, res) => {
 
         if (!findSalary) return res.status(400).json({ message: 'Salary not found' });
 
-        await findSalary.remove();
+        await findSalary.deleteOne();
         res.status(201).json({ message: 'Salary Deleted' });
 
     } catch (error) {
