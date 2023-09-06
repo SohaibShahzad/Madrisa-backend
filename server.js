@@ -14,6 +14,17 @@ app.get("/", (req, res) => {
     res.send("Hello World")
 })
 
+app.use(express.json());
+
+
+// Available Routes
+app.use('/employee', require('./routes/employee'));
+app.use('/student', require('./routes/student'));
+app.use('/salaries', require('./routes/salaries'));
+app.use('/cashIn', require('./routes/cashIn'));
+app.use('/cashOut', require('./routes/cashOut'));
+
+
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)
 })

@@ -2,7 +2,7 @@ const { default: mongoose } = require("mongoose");
 const { Schema } = mongoose;
 const getNextSequenceValue = require("../middleware/counter");
 
-const StudentSchema = new Schema({
+const TeacherSchema = new Schema({
     id: {
         type: Number,
     },
@@ -15,15 +15,19 @@ const StudentSchema = new Schema({
     password: {
         type: String,
     },
+    role: {
+        type: String,
+        default: "Teacher",
+    },
 }, {
     timestamps: true
 });
 
 
-StudentSchema.pre("save", async function (next) {
+TeacherSchema.pre("save", async function (next) {
     const doc = this;
     if (doc.id == null) {
-        const seq = await getNextSequenceValue("Student");
+        const seq = await getNextSequenceValue("Teacher");
         doc.id = seq;
     }
     next();
@@ -33,5 +37,5 @@ StudentSchema.pre("save", async function (next) {
 
 
 
-const Student = mongoose.model("Student", StudentSchema);
-module.exports = Student;
+const Teacher = mongoose.model("Teacher", TeacherSchema);
+module.exports = Teacher;

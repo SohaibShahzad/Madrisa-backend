@@ -2,36 +2,35 @@ const { default: mongoose } = require("mongoose");
 const { Schema } = mongoose;
 const getNextSequenceValue = require("../middleware/counter");
 
-const TeacherSchema = new Schema({
+const CashOutSchema = new Schema({
     id: {
         type: Number,
     },
-    name: {
+    cashOutAmount: {
         type: String,
     },
-    email: {
+    descripition: {
         type: String,
     },
-    password: {
-        type: string,
+    date: {
+        type: String,
+    },
+    document: {
+        type: String,
     },
 }, {
     timestamps: true
 });
 
-
-TeacherSchema.pre("save", async function (next) {
+CashOutSchema.pre("save", async function (next) {
     const doc = this;
     if (doc.id == null) {
-        const seq = await getNextSequenceValue("Teacher");
+        const seq = await getNextSequenceValue("CashOut");
         doc.id = seq;
     }
     next();
 });
 
 
-
-
-
-const Teacher = mongoose.model("Teacher", TeacherSchema);
-module.exports = Teacher;
+const CashOut = mongoose.model("CashOut", CashOutSchema);
+module.exports = CashOut;
