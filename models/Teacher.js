@@ -1,9 +1,20 @@
 const { default: mongoose } = require("mongoose");
 const { Schema } = mongoose;
 const passportLocalMongoose = require("passport-local-mongoose");
-// const getNextSequenceValue = require("../middleware/counter");
 
-const StudentSchema = new Schema(
+const EducationSchema = new Schema({
+  university: {
+    type: String,
+  },
+  degree: {
+    type: String,
+  },
+  year: {
+    type: String,
+  },
+});
+
+const TeacherSchema = new Schema(
   {
     firstName: {
       type: String,
@@ -11,24 +22,23 @@ const StudentSchema = new Schema(
     lastName: {
       type: String,
     },
-    rollNo: {
-      type: Number,
+    email: {
+      type: String,
+      unique: true,
     },
-    dob: {
+    password: {
       type: String,
     },
     phone: {
       type: String,
     },
+    dob: {
+      type: String,
+    },
     address: {
       type: String,
     },
-    email: {
-      type: String,
-    },
-    password: {
-      type: String,
-    },
+    education: EducationSchema,
     subjects: [
       {
         type: Schema.Types.ObjectId,
@@ -41,9 +51,9 @@ const StudentSchema = new Schema(
   }
 );
 
-StudentSchema.plugin(passportLocalMongoose, {
+TeacherSchema.plugin(passportLocalMongoose, {
   usernameField: "email",
 });
 
-const Student = mongoose.model("Student", StudentSchema);
-module.exports = Student;
+const Teacher = mongoose.model("Teacher", TeacherSchema);
+module.exports = Teacher;

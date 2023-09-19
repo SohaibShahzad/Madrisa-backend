@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const url = "mongodb://127.0.0.1:27017/madrisa";
+const url = process.env.DATABASE_URL;
 ConnectToMongo = () => {
     mongoose.set("strictQuery", false);
     mongoose.connect(url, {
