@@ -12,7 +12,7 @@ const {
 router.post("/create", createSubject);
 router.get("/getAll", getAllSubjects);
 router.get("/get/:id", getSubjectById);
-router.put("/update/:id", updateSubject);
+router.post("/update/:id", updateSubject);
 router.delete("/delete/:id", deleteSubject);
 
 module.exports = router;

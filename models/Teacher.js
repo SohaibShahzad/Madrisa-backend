@@ -14,6 +14,25 @@ const EducationSchema = new Schema({
   },
 });
 
+const SalarySchema = new Schema({
+  amount: {
+    type: Number,
+  },
+  month: {
+    type: String,
+  },
+});
+
+const SubjectReferenceSchema = new Schema({
+  id: {
+    type: Schema.Types.ObjectId,
+    ref: "Subject",
+  },
+  name: {
+    type: String,
+  },
+});
+
 const TeacherSchema = new Schema(
   {
     firstName: {
@@ -39,12 +58,8 @@ const TeacherSchema = new Schema(
       type: String,
     },
     education: EducationSchema,
-    subjects: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Subject",
-      },
-    ],
+    subjects: [SubjectReferenceSchema],
+    salary: [SalarySchema],
   },
   {
     timestamps: true,

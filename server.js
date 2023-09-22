@@ -17,7 +17,7 @@ const app = express();
 const multerConfig = multer();
 const parser = multerConfig.none();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 
 app.use(
   cors({

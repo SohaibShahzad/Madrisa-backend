@@ -54,11 +54,11 @@ const updateSubject = asyncHandler(async (req, res) => {
 
 const deleteSubject = asyncHandler(async (req, res) => {
   try {
-    const subject = await Subject.findById(req.params.id);
+    const { id } = req.params;
+    const subject = await Subject.findByIdAndDelete(id);
     if (!subject) {
       return res.status(404).json({ message: "Subject not found" });
     }
-    await subject.remove();
     res.status(200).json({ message: "Subject Deleted" });
   } catch (error) {
     res.status(500).json({ message: error.message });
